@@ -121,19 +121,19 @@ public class VLCPlayerView extends FrameLayout implements IVLCVout.Callback, Lif
             if (networkCaching > 60000) networkCaching = 60000;
             else if (networkCaching < 0) networkCaching = 0;
             options.add("--audio-time-stretch");
-            options.add("--avcodec-skiploopfilter");
-            options.add("" + deblocking);
-            options.add("--avcodec-skip-frame");
-            options.add("0");
-            options.add("--avcodec-skip-idct");
-            options.add("0");
-            options.add("--subsdec-encoding");
+            // options.add("--avcodec-skiploopfilter");
+            // options.add("" + deblocking);
+            // options.add("--avcodec-skip-frame");
+            // options.add("0");
+            // options.add("--avcodec-skip-idct");
+            // options.add("0");
+            // options.add("--subsdec-encoding");
             options.add("--stats");
-            if (networkCaching > 0) options.add("--network-caching=" + networkCaching);
+            // if (networkCaching > 0) options.add("--network-caching=" + networkCaching);
             options.add("--androidwindow-chroma");
-            options.add("RV32");
+            // options.add("RV32");
 
-            options.add("-vv");
+            options.add("-vvv");
 
             libvlc = new LibVLC(getContext().getApplicationContext());
 
@@ -152,6 +152,7 @@ public class VLCPlayerView extends FrameLayout implements IVLCVout.Callback, Lif
         final IVLCVout vout = mMediaPlayer.getVLCVout();
         if (!vout.areViewsAttached()) {
             vout.setVideoView(mSurface);
+            vout.setWindowSize(2880, 1440);
             vout.addCallback(this);
             vout.attachViews();
         }
