@@ -135,7 +135,7 @@ public class VLCPlayerView extends FrameLayout implements IVLCVout.Callback, Lif
 
             options.add("-vv");
 
-            libvlc = new LibVLC(options);
+            libvlc = new LibVLC(getContext().getApplicationContext());
 
             holder.setKeepScreenOn(true);
 
@@ -330,15 +330,17 @@ public class VLCPlayerView extends FrameLayout implements IVLCVout.Callback, Lif
         mMediaPlayer.setVolume(volume);
     }
 
-    @Override
-    public void onNewLayout(IVLCVout vout, int width, int height, int visibleWidth, int visibleHeight, int sarNum, int sarDen) {
-        if (width * height == 0) return;
+    // Look into using the new method as described here
+    // https://stackoverflow.com/a/42995880
+    // @Override
+    // public void onNewLayout(IVLCVout vout, int width, int height, int visibleWidth, int visibleHeight, int sarNum, int sarDen) {
+    //     if (width * height == 0) return;
 
-        // store video size
-        mSarNum = sarNum;
-        mSarDen = sarDen;
-        changeSurfaceLayout(width, height);
-    }
+    //     // store video size
+    //     mSarNum = sarNum;
+    //     mSarDen = sarDen;
+    //     changeSurfaceLayout(width, height);
+    // }
 
     @Override
     public void onSurfacesCreated(IVLCVout vout) {
@@ -350,12 +352,12 @@ public class VLCPlayerView extends FrameLayout implements IVLCVout.Callback, Lif
 
     }
 
-    @Override
-    public void onHardwareAccelerationError(IVLCVout vout) {
-        // Handle errors with hardware acceleration
-        this.releasePlayer();
-        Toast.makeText(getContext(), "Error with hardware acceleration", Toast.LENGTH_LONG).show();
-    }
+    // @Override
+    // public void onHardwareAccelerationError(IVLCVout vout) {
+    //     // Handle errors with hardware acceleration
+    //     this.releasePlayer();
+    //     Toast.makeText(getContext(), "Error with hardware acceleration", Toast.LENGTH_LONG).show();
+    // }
 
     @Override
     public void onHostResume() {
