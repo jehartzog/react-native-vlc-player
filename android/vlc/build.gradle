@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.facebook.react:react-native:+"
-    compile "org.videolan.libvlc:libvlc:2.5.5"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.facebook.react:react-native:+"
+    implementation "org.videolan.libvlc:libvlc:2.5.5"
 }
